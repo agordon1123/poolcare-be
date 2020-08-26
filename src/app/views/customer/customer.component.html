@@ -1,8 +1,30 @@
 <div class="customer-container">
     <h3>Customers</h3>
-    <div class="customer-list">
-        <ul>
-            <li *ngFor="let customer of customers">{{customer.lastName}}, {{customer.firstName}}</li>
-        </ul>
-    </div>
+    <form>
+        <div class="form-group form-inline customer-search-form">
+            <!-- [formControl]="filter"  -->
+            Search: <input class="form-control ml-2" type="text" />
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers index as i">
+                <th scope="row">{{ i+1 }}</th>
+                <td>
+                    <ngb-highlight [result]="customer.firstName"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="customer.lastName"></ngb-highlight>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

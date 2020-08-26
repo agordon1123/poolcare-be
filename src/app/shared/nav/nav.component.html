@@ -1,7 +1,7 @@
 <div class="nav-container">
     <ul>
-        <li *ngFor="let tab of tabs" (click)="changeView(tab)">
-            {{ tab }}
+        <li *ngFor="let tab of tabs index as i" (click)="changeView(tab)">
+            <a tabindex="{{i+1}}">{{ tab }}</a>
         </li>
     </ul>
 </div>
