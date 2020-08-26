@@ -1,6 +1,6 @@
 <div class="nav-container">
     <ul>
-        <li *ngFor="let tab of tabs">
+        <li *ngFor="let tab of tabs" (click)="changeView(tab)">
             {{ tab }}
         </li>
     </ul>

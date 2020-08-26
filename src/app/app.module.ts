@@ -8,13 +8,23 @@ import { HeaderComponent } from './shared/header/header.component';
 // import { NgbNav, NgbNavItem, NgbNavLink, NgbNavContent } from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './shared/nav/nav.component';
 import { CustomerComponent } from './views/customer/customer.component';
+import { HomeComponent } from './views/home/home.component';
+import { WorkOrdersComponent } from './views/work-orders/work-orders.component';
+import { ScheduleComponent } from './views/schedule/schedule.component';
+import { InventoryComponent } from './views/inventory/inventory.component';
+import { AdminComponent } from './views/admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     NavComponent,
-    CustomerComponent
+    CustomerComponent,
+    HomeComponent,
+    WorkOrdersComponent,
+    ScheduleComponent,
+    InventoryComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
