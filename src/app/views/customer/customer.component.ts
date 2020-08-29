@@ -13,6 +13,7 @@ import { Customer } from './types';
   export class CustomerComponent implements OnInit, ControlValueAccessor {
 
   customers: Array<Customer> = [];
+  selectedCustomer: Customer;
 
   constructor(private customerService: CustomerService) { }
 
@@ -22,9 +23,15 @@ import { Customer } from './types';
 
   getCustomers() {
     this.customerService.getCustomersByCompanyId({companyId:JSON.parse(localStorage.getItem('config'))['companyId']}).subscribe((res: any) => {
-      console.log(res)
       this.customers = res
+      if (res.length > 0) {
+        this.selectedCustomer = res[0]
+      }
     })
+  }
+
+  selectCustomer(customer: Customer) {
+    this.selectedCustomer = customer;
   }
 
   writeValue(value) { }

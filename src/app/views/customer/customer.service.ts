@@ -23,10 +23,11 @@ export class CustomerService {
       map((res: any) => {
         return res
       }), catchError(error => {
-        return throwError('Error at /getCustomersByCompanyId');
+        return throwError('Error at /getCustomersByCompanyId', error)
       })
     )
   }
+  
 }
 
 // import { Injectable } from '@angular/core';

@@ -15,7 +15,7 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  changeView = (view) => {
+  changeView = (view: String) => {
     const v =  '/' + view.split(' ').join('-').toLowerCase()
     this.router.navigate([v])
   }

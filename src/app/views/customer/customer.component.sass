@@ -1,10 +1,28 @@
 .customer-container
     max-width: 80%
     margin: 0 auto
-    form
-        .customer-search-form
-            font-size: 1.6rem
-            input
+    .customer-header
+        .search-add-container
+            display: flex
+            justify-content: space-between
+            form
+                .customer-search-form
+                    font-size: 1.6rem
+                    input
+                        font-size: 1.6rem
+            p
+                margin: 0
                 font-size: 1.6rem
-    table
-        font-size: 1.6rem
+                transition: color 0.1s ease-in
+                &:hover
+                    cursor: pointer
+                    color: dodgerblue
+    .customer-table-container
+        height: 20rem
+        max-height: 20rem
+        overflow-y: scroll
+        table
+            font-size: 1.6rem
+            .customer-row
+                &:hover
+                    cursor: pointer

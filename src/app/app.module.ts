@@ -12,6 +12,7 @@ import { WorkOrdersComponent } from './views/work-orders/work-orders.component';
 import { ScheduleComponent } from './views/schedule/schedule.component';
 import { InventoryComponent } from './views/inventory/inventory.component';
 import { AdminComponent } from './views/admin/admin.component';
+import { CustomerDetailsComponent } from './views/customer/customer-details/customer-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AdminComponent } from './views/admin/admin.component';
     WorkOrdersComponent,
     ScheduleComponent,
     InventoryComponent,
-    AdminComponent
+    AdminComponent,
+    CustomerDetailsComponent
   ],
   imports: [
     BrowserModule,

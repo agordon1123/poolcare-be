@@ -3,5 +3,7 @@ export class Customer {
     firstName: string
     lastName: string
     companyId: number
-    companyName: string 
+    companyName: string
+    address: object
+    pool: object
 }

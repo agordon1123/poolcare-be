@@ -1,0 +1,51 @@
+<div class='customer-details-container'>
+    <div class="detail-nav-container">
+        <ul>
+            <li *ngFor="let tab of tabs index as i">
+                <a tabindex="{{i+1}}">{{ tab }}</a>
+            </li>
+        </ul>
+    </div>
+    <div class='data-container'>
+        <div class="customer-information customer-info">
+            <h5>Customer Information</h5>
+            <br>
+            <div class="addresses">
+                <div class="primary-address">
+                    <h6>Primary Address:</h6>
+                    <p>{{customer.firstName}} {{customer.lastName}}</p>
+                    <p *ngIf="customer.address != null">{{customer.address.firstLine}}</p>
+                    <p *ngIf="customer.address != null">{{customer.address.secondLine}}</p>
+                    <p *ngIf="customer.address != null">{{customer.address.locality}}, {{customer.address.province}} {{customer.address.zipCode}}</p>
+                    <p *ngIf="customer.address != null">{{customer.address.country}}</p>
+                </div>
+                <div class="billing-address">
+                    <h6>Billing Address:</h6>
+                    <p>{{customer.firstName}} {{customer.lastName}}</p>
+                    <p *ngIf="customer.address != null">{{customer.address.firstLine}}</p>
+                    <p *ngIf="customer.address != null">{{customer.address.secondLine}}</p>
+                    <p *ngIf="customer.address != null">{{customer.address.locality}}, {{customer.address.province}} {{customer.address.zipCode}}</p>
+                    <p *ngIf="customer.address != null">{{customer.address.country}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="pool-information customer-info">
+            <h5>Pool Information</h5>
+            <br>
+            <!-- <label for="gallonage">Gallonage:</label> -->
+            <p *ngIf="customer.pool != null">Gallonage: {{customer.pool.gallonage}}</p>
+            <p>Pool Type: In-ground</p>
+            <p>Sanitizer: Salt</p>
+            <p>Shape: Roman Rectangle</p>
+            <p>Access: Left</p>
+            <p>Dog: Yes</p>
+        </div>
+        <div class="metadata-information customer-info">
+            <h5>Customer Metadata</h5>
+            <br>
+            <!-- TODO: metadata fields -->
+            <p>Active: yes</p>
+            <p>Created: 08/28/2020</p>
+        </div>
+    </div>
+</div>
