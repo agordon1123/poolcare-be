@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from './customer.service';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+// import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Customer } from './types';
 
 @Component({
@@ -10,10 +10,12 @@ import { Customer } from './types';
   // providers: [CustomerService]
 })
   // export class CustomerComponent implements OnInit {
-  export class CustomerComponent implements OnInit, ControlValueAccessor {
+export class CustomerComponent implements OnInit {
 
-  customers: Array<Customer> = [];
-  selectedCustomer: Customer;
+  customers: Array<Customer> = []
+  selectedCustomer: Customer
+  isAdding: boolean = false
+  isEditing: boolean = false
 
   constructor(private customerService: CustomerService) { }
 
@@ -31,7 +33,15 @@ import { Customer } from './types';
   }
 
   selectCustomer(customer: Customer) {
-    this.selectedCustomer = customer;
+    this.selectedCustomer = customer
+  }
+
+  toggleEditing(editing: boolean) {
+    this.isEditing = editing
+  }
+
+  toggleAdding(adding: boolean) {
+    this.isAdding = adding
   }
 
   writeValue(value) { }

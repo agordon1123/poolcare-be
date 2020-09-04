@@ -8,7 +8,7 @@
                     Search: <input class="form-control ml-2" type="text" />
                 </div>
             </form>
-            <p>+ Add Customer</p>
+            <p (click)="toggleAdding(true)">+ Add Customer</p>
         </div>
     </div>
 
@@ -38,6 +38,15 @@
             </tbody>
         </table>
     </div>
-
-    <app-customer-details *ngIf="selectedCustomer != null" [customer]="selectedCustomer" ></app-customer-details>
+    <!-- TODO: customer is returning null on setCustomer -->
+    <app-customer-details 
+        *ngIf="selectedCustomer != null" 
+        [customer]="selectedCustomer" 
+        (toggleEditing)="isEditing = !isEditing"
+        (setCustomer)="selectCustomer($event)"
+        [isEditing]="isEditing" 
+        [isAdding]="isAdding"
+    ></app-customer-details>
+    <!-- <app-add-customer *ngIf="isAdding"></app-add-customer>
+    <app-edit-customer *ngIf="isEditing"></app-edit-customer> -->
 </div>

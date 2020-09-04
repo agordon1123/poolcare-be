@@ -13,6 +13,8 @@ import { ScheduleComponent } from './views/schedule/schedule.component';
 import { InventoryComponent } from './views/inventory/inventory.component';
 import { AdminComponent } from './views/admin/admin.component';
 import { CustomerDetailsComponent } from './views/customer/customer-details/customer-details.component';
+import { AddCustomerComponent } from './views/customer/add-customer/add-customer.component';
+import { EditCustomerComponent } from './views/customer/edit-customer/edit-customer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { CustomerDetailsComponent } from './views/customer/customer-details/cust
     ScheduleComponent,
     InventoryComponent,
     AdminComponent,
-    CustomerDetailsComponent
+    CustomerDetailsComponent,
+    AddCustomerComponent,
+    EditCustomerComponent
   ],
   imports: [
     BrowserModule,

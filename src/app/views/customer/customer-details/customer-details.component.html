@@ -2,26 +2,28 @@
     <div class="detail-nav-container">
         <ul>
             <li *ngFor="let tab of tabs index as i">
-                <a tabindex="{{i+1}}">{{ tab }}</a>
+                <a tabindex="{{i+1}}">{{tab}}</a>
+            </li>
+            <li>
+                <button [disabled]="isEditing" class="btn btn-primary" (click)="togEditing()">Edit Customer</button>
             </li>
         </ul>
     </div>
-    <div class='data-container'>
+    <div class='data-container' *ngIf="customer != null && !isEditing && !isAdding">
         <div class="customer-information customer-info">
             <h5>Customer Information</h5>
+            <p class="customer-name">{{customer.firstName}} {{customer.lastName}}</p>
             <br>
             <div class="addresses">
                 <div class="primary-address">
                     <h6>Primary Address:</h6>
-                    <p>{{customer.firstName}} {{customer.lastName}}</p>
-                    <p *ngIf="customer.address != null">{{customer.address.firstLine}}</p>
+                    <p *ngIf="customer.address != null">{{ customer.address.firstLine }}</p>
                     <p *ngIf="customer.address != null">{{customer.address.secondLine}}</p>
                     <p *ngIf="customer.address != null">{{customer.address.locality}}, {{customer.address.province}} {{customer.address.zipCode}}</p>
                     <p *ngIf="customer.address != null">{{customer.address.country}}</p>
                 </div>
                 <div class="billing-address">
                     <h6>Billing Address:</h6>
-                    <p>{{customer.firstName}} {{customer.lastName}}</p>
                     <p *ngIf="customer.address != null">{{customer.address.firstLine}}</p>
                     <p *ngIf="customer.address != null">{{customer.address.secondLine}}</p>
                     <p *ngIf="customer.address != null">{{customer.address.locality}}, {{customer.address.province}} {{customer.address.zipCode}}</p>
@@ -32,20 +34,73 @@
         <div class="pool-information customer-info">
             <h5>Pool Information</h5>
             <br>
-            <!-- <label for="gallonage">Gallonage:</label> -->
             <p *ngIf="customer.pool != null">Gallonage: {{customer.pool.gallonage}}</p>
-            <p>Pool Type: In-ground</p>
-            <p>Sanitizer: Salt</p>
-            <p>Shape: Roman Rectangle</p>
-            <p>Access: Left</p>
-            <p>Dog: Yes</p>
+            <p *ngIf="customer.pool != null">Pool Type: {{customer.pool.poolType}}</p>
+            <p *ngIf="customer.pool != null">Sanitizer: {{customer.pool.sanitizer}}</p>
+            <p *ngIf="customer.pool != null">Shape: {{customer.pool.shape}}</p>
+            <p *ngIf="customer.pool != null">Access: {{customer.pool.accessSide}}</p>
+            <p *ngIf="customer.pool != null">Dog: {{customer.pool.hasDog ? 'Yes' : 'No'}}</p>
         </div>
         <div class="metadata-information customer-info">
             <h5>Customer Metadata</h5>
             <br>
-            <!-- TODO: metadata fields -->
             <p>Active: yes</p>
             <p>Created: 08/28/2020</p>
+        </div>
+    </div>
+    <div class="edit-customer-container" *ngIf="customer != null && isEditing && !isAdding">
+        <div class="customer-info">
+            <h5>Primary Address</h5>
+            <form>
+                <label for="firstLine"><h6>Address Line 1</h6></label>
+                <input type="text" name="firstLine" value="{{customer.address.firstLine}}" (keyup)="handleAddressEdits($event)" class="full-span">
+                <label for="secondLine"><h6>Address Line 2</h6></label>
+                <input type="text" name="secondLine" value="{{customer.address.secondLine}}" (keyup)="handleAddressEdits($event)" class="full-span">
+                <label for="locality" class="half-span"><h6>Locality</h6></label>
+                <label for="province" class="half-span"><h6>Province</h6></label>
+                <input type="text" name="locality" value="{{customer.address.locality}}" (keyup)="handleAddressEdits($event)" class="half-span">
+                <input type="text" name="province" value="{{customer.address.province}}" (keyup)="handleAddressEdits($event)" class="half-span">
+                <label for="zipCode" class="half-span"><h6>Zip Code</h6></label>
+                <label for="country" class="half-span"><h6>Country</h6></label>
+                <input type="text" name="zipCode" value="{{customer.address.zipCode}}" (keyup)="handleAddressEdits($event)" class="half-span">
+                <input type="text" name="country" value="{{customer.address.country}}" (keyup)="handleAddressEdits($event)" class="half-span">
+                <br>
+                <br>
+                <h6>Dog?</h6>
+                <input type="radio" id="yes" name="hasDog">
+                <label for="yes" class="radio">Yes</label>
+                <input type="radio" id="no" name="hasDog">
+                <label for="no" class="radio">No</label>
+                <br>
+                <br>
+                <h6>Access side</h6>
+                <input type="radio" id="left" name="accessSide">
+                <label for="left" class="radio">Left</label>
+                <input type="radio" id="right" name="accessSide">
+                <label for="right" class="radio">Right</label>
+            </form>
+        </div>
+        <div class="customer-info">
+            <div *ngIf="!isAddingPool" class="not-adding-pool">
+                <button (click)="toggleIsAddingPool()" class="btn btn-primary my-button">Add Pool</button>
+            </div>
+            <div *ngIf="isAddingPool" class="is-adding-pool">
+                <form>
+                    <label for="gallonage" class="full-span"><h6>Gallonage</h6></label>
+                    <input type="text" name="gallonage" value="{{customer.pool.gallonage}}" (keyup)="handlePoolEdits($event)">                    
+                    <label for="poolType" class="full-span"><h6>Pool Type</h6></label>
+                    <input type="text" name="poolType" value="{{customer.pool.poolType}}" (keyup)="handlePoolEdits($event)">
+                    <label for="Sanitizer" class="full-span"><h6>Sanitizer</h6></label>
+                    <input type="text" name="sanitizer" value="{{customer.pool.sanitizer}}" (keyup)="handlePoolEdits($event)">
+                    <label for="shape" class="full-span"><h6>Shape</h6></label>
+                    <input type="text" name="shape" value="{{customer.pool.shape}}" (keyup)="handlePoolEdits($event)">
+                </form>
+                <button class="btn btn-danger my-button" (click)="toggleIsAddingPool()" style="margin-top:2rem;">Cancel</button>
+            </div>
+        </div>
+        <div class="customer-info confirm">
+            <button class="btn btn-danger my-button" (click)="togEditing()">Cancel</button>
+            <button class="btn btn-success my-button" (click)="handleSubmit()">Save</button>
         </div>
     </div>
 </div>
